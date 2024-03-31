@@ -1,0 +1,70 @@
+/*fullCalendar*/
+:root {
+  font-family: Roboto, sans-serif;
+  /*https://github.com/fullcalendar/fullcalendar/blob/main/packages/core/src/styles/vars.css*/
+  --fc-button-bg-color: #1e88e5;
+  --fc-button-active-bg-color: #2196f3;
+  --fc-button-border-color: #1e88e5;
+  --fc-button-hover-bg-color: #2196f3;
+  --fc-button-hover-border-color: #2196f3;
+  --fc-button-active-border-color: #2196f3;
+  --fc-today-bg-color: #f4fbff;
+}
+
+/*custom*/
+.calendar {
+  padding: 1rem;
+  min-width: 500px;
+}
+
+.fullcalendar-content {
+  color: #2196f3;
+  padding-left: 5px;
+  white-space: normal;
+}
+
+#fc-time {
+  color: rgb(38, 38, 38);
+  font-weight: 800;
+}
+
+.fc-client-duration {
+  color: #000000;
+  font-weight: 400;
+  font-size: small;
+}
+
+.fc-button-group {
+  font-size: small;
+}
+
+.fc-today-button {
+  font-size: small !important;
+}
+
+.fc-col-header-cell-cushion {
+  color: #000000;
+  font-weight: 400;
+}
+
+.fc-toolbar-title {
+  font-weight: 400;
+  font-size: 23.989px !important;
+}
+
+.fc-daygrid-day-number {
+  color: #2196f3;
+}
+
+.fc-daygrid-week-number {
+  background-color: #ffffff !important;
+  font-size: small;
+  margin-left: 5px;
+  margin-top: 5px;
+  color: #bababa !important;
+}
+
+.fc-list-day-text,
+.fc-list-day-side-text {
+  color: #1e88e5;
+}
