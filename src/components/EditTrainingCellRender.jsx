@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ButtonBase } from '@mui/material';
 import EditTraining from './EditTraining';
 import EditIcon from '@mui/icons-material/Edit';

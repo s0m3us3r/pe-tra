@@ -2,15 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
-import { Typography, Box, Link, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import dayjs from 'dayjs';
 //components folder imports
 import ExportTrainingData from "./ExportTrainingData";
 import AddTraining from "./AddTraining";
-import DeleteTrainingCellRender from './DeleteTrainingCellRender'; //
+import DeleteTrainingCellRender from './DeleteTrainingCellRender'; 
 import EditTrainingCellRender from './EditTrainingCellRender';
-import DeleteCustomerCellRender from './DeleteCustomerCellRender';
-import EditCustomerCellRender from './EditCustomerCellRender';
 //ICONS
 import SportsMartialArtsIcon from '@mui/icons-material/SportsMartialArts';
 
