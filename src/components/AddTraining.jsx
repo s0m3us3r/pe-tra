@@ -5,6 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import { Typography } from "@mui/material";
+import dayjs from 'dayjs';
 //components folder
 import DateAndTimePicker from "./DateAndTimePicker";
 import CustomersMenu from "./CustomersMenu";
@@ -17,18 +18,20 @@ import DurationMenu from "./DurationMenu";
 
 
 export default function AddTraining(props) {
-    const { fetchTrainings, fetchCustomers, setTrainings, customers, setAddedEvent } = props;
+    const { fetchTrainings, fetchCustomers, setTrainings, setAddedEvent } = props;
     const [customerAdded, setCustomerAdded] = useState(false);
-
     const [training, setTraining] = useState({
         activity: "",
         duration: 30,
         date: new Date(),
-        customer: ""
+        customer: "",
+        //for successmessage
+        firstname: "",
+        lastname: ""
     })
-
-    //Dialogin avaus
+    //Dialogit
     const [open, setOpen] = useState(false);
+    const [saveTrainingSuccessOpen, setSaveTrainingSuccessOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -36,11 +39,19 @@ export default function AddTraining(props) {
     const handleTrainingClose = () => {
         setOpen(false);
     };
-
+    const handleSaveTrainingSuccessClose = () => {
+        console.log(training);
+        setSaveTrainingSuccessOpen(false);
+    };
     const customerFromTrainingAdded = () => {
         setCustomerAdded(true);
     };
 
+    //Training listalta tän välittäminen toimi välillä ja välillä ei niin 
+    const formatDate = (date) => {
+        const parsedDate = new Date(date);
+        return dayjs(parsedDate).format('DD.MM.YYYY HH:mm');
+    }
 
     //käsittely
     const handleInputChange = (e) => {
@@ -60,30 +71,45 @@ export default function AddTraining(props) {
             training.activity.trim() !== '' &&
             typeof training.duration === 'number' && training.duration > 0 &&
             training.date &&
-            training.customer 
+            training.customer
         ) {
             return true;
         }
         return false;
     }
 
-    //API
+    //API training+training.customer
     const saveTraining = () => {
         if (requiredTrainingFieldsCheck()) {
-        fetch('https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings',
-            {
+            fetch('https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(training)
             })
-            .then((res) => {
-                fetchTrainings(setTrainings);
-                if (setAddedEvent) {
-                    setAddedEvent(true);
-                }
-                setOpen(false);
-            })
-            .catch((err) => console.error(err));
+                .then((res) => {
+                    if (res.ok) {
+                        fetchTrainings(setTrainings);
+                        if (setAddedEvent) {
+                            setAddedEvent(true);
+                        }
+                        setOpen(false);
+                        setSaveTrainingSuccessOpen(true);
+
+                        fetch(training.customer)
+                            .then((response) => response.json())
+                            .then((customerData) => {
+                                const { firstname, lastname } = customerData;
+
+                                setTraining(prevState => ({ //prevState https://www.valentinog.com/blog/react-object-is/
+                                    ...prevState,
+                                    firstname: firstname,
+                                    lastname: lastname
+                                }));
+                            })
+                            .catch((err) => console.error('Error fetching customer:', err));
+                    }
+                })
+                .catch((err) => console.error('Error adding training:', err));
         }
     };
 
@@ -123,14 +149,12 @@ export default function AddTraining(props) {
                             duration={training.duration}
                             handleInputChange={handleInputChange}
                         />
-
                         <DateAndTimePicker
                             label="Date & Time"
                             required
                             value={training.date}
                             onChange={handleDateTimeChange}
                         />
-
                         <CustomersMenu
                             label="Customer"
                             required
@@ -149,6 +173,21 @@ export default function AddTraining(props) {
                         <Button onClick={saveTraining} type="save">Save</Button>
                     </DialogActions>
                 </Dialog>
+
+                <Dialog
+                    open={saveTrainingSuccessOpen}
+                    onClose={handleSaveTrainingSuccessClose}
+                >
+                    <DialogContent>
+                        <Typography variant="subtitle1">
+                            Training added successfully: {formatDate(training.date)}, {training.lastname} {training.firstname}, {training.activity} {training.duration} minutes
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleSaveTrainingSuccessClose}>OK</Button>
+                    </DialogActions>
+                </Dialog>
+
             </React.Fragment>
         </>
     );

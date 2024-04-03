@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
-import { Typography } from "@mui/material";
+import { Typography, Alert } from "@mui/material";
 //component folder imports
 import ExportCustomerData from "./ExportCustomerData";
 import EditCustomerCellRender from "./EditCustomerCellRender";
@@ -35,15 +35,15 @@ export default function CustomerList(props) {
     return (
       <>
         <span>{cellValue}</span>&nbsp;
-        <EditCustomerCellRender 
-        customer={props.data} 
-        fetchCustomers={fetchCustomers} 
-        setCustomers={setCustomers} 
+        <EditCustomerCellRender
+          customer={props.data}
+          fetchCustomers={fetchCustomers}
+          setCustomers={setCustomers}
         />
-        <DeleteCustomerCellRender 
-        customer={props.data} 
-        fetchCustomers={fetchCustomers} s
-        etCustomers={setCustomers} 
+        <DeleteCustomerCellRender
+          customer={props.data}
+          fetchCustomers={fetchCustomers}
+          setCustomers={setCustomers}
         />
       </>
     );
@@ -136,7 +136,7 @@ export default function CustomerList(props) {
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography variant='h5' align="left" sx={{ pt: 2, pl: 2 }}>
-          Customers
+          Clients
           <GroupIcon sx={{ fontSize: 'large', verticalAlign: 'middle', mr: 0.5, ml: 0.5 }} />
         </Typography>
 

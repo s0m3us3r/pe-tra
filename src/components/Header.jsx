@@ -17,7 +17,6 @@ import { Link } from "react-router-dom";
 
 //https://mui.com/material-ui/react-app-bar/
 export default function Header() {
-    //const pages = ['Calendar', 'Sessions', 'Clients'];
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -30,11 +29,9 @@ export default function Header() {
     };
 
 
-
     return (
         <>
-            <AppBar position="static" >
-
+            <AppBar position="fixed" >
                 <Toolbar disableGutters>
                     <Link to='/'>
                         <Typography
@@ -89,7 +86,7 @@ export default function Header() {
 
                             <MenuItem onClick={handleCloseNavMenu} sx={{ display: "flex", flexDirection: 'column', alignItems: "flex-start" }}>
                                 <Link to='/' ><Button><CalendarMonthIcon sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.2, mr: 1 }} />Home-Calendar</Button></Link>
-                                <Link to='customers' ><Button><GroupIcon sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.2, mr: 1 }} />Customers</Button></Link>
+                                <Link to='customers' ><Button><GroupIcon sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.2, mr: 1 }} />Clients</Button></Link>
                                 <Link to='sessions' ><Button><SportsMartialArtsIcon sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.2, mr: 1 }} />Sessions</Button></Link>
                                 <Link to='stats' ><Button><BarChartIcon sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.2, mr: 1 }} />Stats</Button></Link>
                             </MenuItem>
@@ -110,7 +107,7 @@ export default function Header() {
                                 fontWeight: 700,
                                 letterSpacing: '.2rem',
                                 textDecoration: 'none',
-                                color:'white'
+                                color: 'white'
                             }}
                         >
                             PE<FitnessCenterIcon sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.4 }} />TRA
@@ -118,10 +115,28 @@ export default function Header() {
                     </Link>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', mr: 2 }}>
 
-                        <Link to='/' ><Button sx={{ color: "white" }}><CalendarMonthIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />Home/Calendar</Button></Link>
-                        <Link to='customers' ><Button sx={{ color: "white" }}><GroupIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />Customers</Button></Link>
-                        <Link to='sessions' ><Button sx={{ color: "white" }}><SportsMartialArtsIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />Sessions</Button></Link>
-                        <Link to='stats' ><Button sx={{ color: "white" }}><BarChartIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />Stats</Button></Link>
+                        <Link to='/' >
+                            <Button sx={{ color: "white" }}>
+                                <CalendarMonthIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />
+                                Home/Calendar
+                            </Button>
+                        </Link>
+                        <Link to='customers' >
+                            <Button sx={{ color: "white" }}>
+                                <GroupIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />
+                                Clients
+                            </Button>
+                        </Link>
+                        <Link to='sessions' >
+                            <Button sx={{ color: "white" }}><SportsMartialArtsIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />
+                                Sessions
+                            </Button>
+                        </Link>
+                        <Link to='stats' >
+                            <Button sx={{ color: "white" }}><BarChartIcon sx={{ display: { xs: 'none', md: 'flex' }, mt: 0.1, mr: 1, ml: 2, fontSize: 'medium' }} />
+                                Stats
+                            </Button>
+                        </Link>
 
                     </Box>
                 </Toolbar>

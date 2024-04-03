@@ -49,9 +49,11 @@ function App() {
   return (
     <div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Container style={{ width: '100%' }}>
+        <Container sx={{ width: '100%' }}>
           <Header />
-          <Outlet />
+          <Container sx={{ mt:'75px' }}>
+          <Outlet/>
+          </Container>
         </Container>
 
       </LocalizationProvider>

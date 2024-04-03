@@ -153,7 +153,11 @@ const ButtonsTrainingCellRender = (props) => {
         </Typography>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', placeContent: 'flex-end' }}>
-          <AddTraining fetchTrainings={fetchTrainings} fetchCustomers={fetchCustomers} setTrainings={setTrainings} />
+          <AddTraining 
+          fetchTrainings={fetchTrainings} 
+          fetchCustomers={fetchCustomers} 
+          setTrainings={setTrainings} 
+          />
           <ExportTrainingData trainings={trainings} />
         </div>
       </div>

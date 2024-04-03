@@ -9,13 +9,11 @@ export default function EditCustomerCellRender(props) {
     const { customer, fetchCustomers, setCustomers } = props;
     const [editing, setEditing] = useState(false);
 
-
     const handleEditClick = () => {
         //console.log("handeling editing")
         //console.log(customer);
         setEditing(true);
     };
-
 
     return (
         <>
