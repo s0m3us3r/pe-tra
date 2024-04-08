@@ -9,7 +9,7 @@ export default function CustomersMenu(props) {
     const [customers, setCustomers] = useState([]);
     //if from EditTraining selectedcustomer, if not(e.g.from AddTraining) ""
     const [selectedCustomerState, setSelectedCustomerState] = useState(selectedCustomer !== undefined ? selectedCustomer : "");
-    //console.log('selected customer:', selectedCustomer)
+
 
     useEffect(() => {
         fetchCustomers(setCustomers);
@@ -28,7 +28,6 @@ export default function CustomersMenu(props) {
 
     const handleMenuClick = (e) => {
         const value = e.target.value;
-        //console.log('handleMenuClick value:',value);
         setSelectedCustomerState(value);
         handleCustomerChange(value);
     };
@@ -37,15 +36,18 @@ export default function CustomersMenu(props) {
         <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
             <InputLabel>{label}</InputLabel>
             <Select
+                aria-label="Customer selection"
                 labelId="customer-select-label"
                 id="customer-select"
                 value={selectedCustomerState}
                 onChange={handleMenuClick}
                 label={label}
             >
-                <MenuItem value="" disabled>Select a customer</MenuItem>
+                <MenuItem aria-label="Select customer" value="" disabled >
+                    Select a customer
+                </MenuItem>
                 {sortedCustomers.map((customer, index) => (
-                    <MenuItem aria-label="Select customer" key={index} value={`${customer._links.customer.href}`}> {/* this is the link from the customers, how do I then make it the right link for training??? */}
+                    <MenuItem aria-label="Select customer list" key={index} value={`${customer._links.customer.href}`}>
                         {`${customer.lastname} ${customer.firstname}`}
                     </MenuItem>
                 ))}

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
-import { Typography, Alert } from "@mui/material";
+import { Typography } from "@mui/material";
 //component folder imports
 import ExportCustomerData from "./ExportCustomerData";
 import EditCustomerCellRender from "./EditCustomerCellRender";

@@ -25,9 +25,9 @@ export default function AddTraining(props) {
         duration: 30,
         date: new Date(),
         customer: "",
-        //for successmessage
-        firstname: "",
-        lastname: ""
+        //for success-message
+        customerFirstName: "",
+        customerLastName: ""
     })
     //Dialogit
     const [open, setOpen] = useState(false);
@@ -40,14 +40,13 @@ export default function AddTraining(props) {
         setOpen(false);
     };
     const handleSaveTrainingSuccessClose = () => {
-        console.log(training);
         setSaveTrainingSuccessOpen(false);
     };
+
     const customerFromTrainingAdded = () => {
         setCustomerAdded(true);
     };
 
-    //Training listalta tän välittäminen toimi välillä ja välillä ei niin 
     const formatDate = (date) => {
         const parsedDate = new Date(date);
         return dayjs(parsedDate).format('DD.MM.YYYY HH:mm');
@@ -80,6 +79,7 @@ export default function AddTraining(props) {
 
     //API training+training.customer
     const saveTraining = () => {
+        //console.log(training)
         if (requiredTrainingFieldsCheck()) {
             fetch('https://customerrestservice-personaltraining.rahtiapp.fi/api/trainings', {
                 method: 'POST',
@@ -89,29 +89,32 @@ export default function AddTraining(props) {
                 .then((res) => {
                     if (res.ok) {
                         fetchTrainings(setTrainings);
+                        //if from Calendar
                         if (setAddedEvent) {
                             setAddedEvent(true);
                         }
                         setOpen(false);
                         setSaveTrainingSuccessOpen(true);
 
+                        //for success message
                         fetch(training.customer)
                             .then((response) => response.json())
                             .then((customerData) => {
                                 const { firstname, lastname } = customerData;
 
-                                setTraining(prevState => ({ //prevState https://www.valentinog.com/blog/react-object-is/
-                                    ...prevState,
-                                    firstname: firstname,
-                                    lastname: lastname
+                                setTraining(customerData => ({
+                                    ...customerData,
+                                    customerFirstName: firstname,
+                                    customerLastName: lastname
                                 }));
                             })
-                            .catch((err) => console.error('Error fetching customer:', err));
+                            .catch((err) => console.error(err));
                     }
                 })
-                .catch((err) => console.error('Error adding training:', err));
+                .catch((err) => console.error(err));
         }
     };
+
 
     return (
         <>
@@ -180,7 +183,7 @@ export default function AddTraining(props) {
                 >
                     <DialogContent>
                         <Typography variant="subtitle1">
-                            Training added successfully: {formatDate(training.date)}, {training.lastname} {training.firstname}, {training.activity} {training.duration} minutes
+                            Training added successfully: {formatDate(training.date)}, {training.customerLastName} {training.customerFirstName}, {training.activity} {training.duration} minutes
                         </Typography>
                     </DialogContent>
                     <DialogActions>

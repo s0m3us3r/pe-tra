@@ -42,7 +42,7 @@ export default function DeleteTrainingCellRender(props) {
     return (
         <span>
             <span>{cellValue}</span>&nbsp;
-            <ButtonBase sx={{ padding: 1 }} onClick={() => setConfirm(true)}>
+            <ButtonBase aria-label="Delete Training Button" sx={{ padding: 1 }} onClick={() => setConfirm(true)}>
                 <DeleteIcon aria-label="delete" sx={{ fontSize: 'medium', color: 'inherit' }} />
                 {/*<Typography sx={{ fontSize: 'small', display: { xs: 'none', md: 'inline' } }}> 
                 Delete

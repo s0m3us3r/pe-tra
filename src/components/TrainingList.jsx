@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 //components folder imports
 import ExportTrainingData from "./ExportTrainingData";
 import AddTraining from "./AddTraining";
-import DeleteTrainingCellRender from './DeleteTrainingCellRender'; 
+import DeleteTrainingCellRender from './DeleteTrainingCellRender';
 import EditTrainingCellRender from './EditTrainingCellRender';
 //ICONS
 import SportsMartialArtsIcon from '@mui/icons-material/SportsMartialArts';
@@ -55,7 +55,7 @@ export default function TrainingList(props) {
   }
 
   //Edit&delete CellRender
-const ButtonsTrainingCellRender = (props) => {
+  const ButtonsTrainingCellRender = (props) => {
     const cellValue = props.value;
     const { fetchTrainings, setTrainings, fetchCustomers } = props;
 
@@ -153,10 +153,10 @@ const ButtonsTrainingCellRender = (props) => {
         </Typography>
 
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', placeContent: 'flex-end' }}>
-          <AddTraining 
-          fetchTrainings={fetchTrainings} 
-          fetchCustomers={fetchCustomers} 
-          setTrainings={setTrainings} 
+          <AddTraining
+            fetchTrainings={fetchTrainings}
+            fetchCustomers={fetchCustomers}
+            setTrainings={setTrainings}
           />
           <ExportTrainingData trainings={trainings} />
         </div>

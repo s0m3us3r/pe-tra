@@ -11,6 +11,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 export default function AddCustomer(props) {
     const { fetchCustomers, setCustomers, customerFromTrainingAdded } = props;
     const [open, setOpen] = useState(false);
+    const [openSuccess, setOpenSuccess] = useState(false);
     const [customer, setCustomer] = useState({
         firstname: "",
         lastname: "",
@@ -26,8 +27,12 @@ export default function AddCustomer(props) {
         setOpen(true);
     };
 
-    const handleClose = (props) => {
+    const handleClose = () => {
         setOpen(false);
+    };
+
+    const handleCloseSuccess = () => {
+        setOpenSuccess(false);
     };
 
     const handleInputChange = (e) => {
@@ -55,6 +60,7 @@ export default function AddCustomer(props) {
                 customerFromTrainingAdded();
             }
             handleClose();
+            setOpenSuccess(true);
         }
     }
 
@@ -167,6 +173,21 @@ export default function AddCustomer(props) {
                         <Button onClick={addCustomer} type="save">Save</Button>
                     </DialogActions>
                 </Dialog>
+
+                <Dialog
+                    open={openSuccess}
+                    onClose={handleCloseSuccess}
+                >
+                    <DialogContent>
+                        <Typography variant="subtitle1">
+                            Customer added successfully: {customer.lastname} {customer.firstname}
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleCloseSuccess}>OK</Button>
+                    </DialogActions>
+                </Dialog>
+
             </React.Fragment>
         </>
     );

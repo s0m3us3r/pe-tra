@@ -13,10 +13,8 @@ export default function EditCustomer(props) {
     const [editedCustomer, setEditedCustomer] = useState(customer)
     const [open, setOpen] = React.useState(true);
 
-
     const handleInputChange = (e) => {
         setEditedCustomer({ ...editedCustomer, [e.target.name]: e.target.value })
-        //console.log(editedCustomer)
     }
 
     const handleClose = () => {
@@ -138,8 +136,8 @@ export default function EditCustomer(props) {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={saveEdit} type="edit">Edit</Button>
+                        <Button aria-label="Cancel button" onClick={handleClose}>Cancel</Button>
+                        <Button aria-label="Edit button" onClick={saveEdit} type="edit">Edit</Button>
                     </DialogActions>
                 </Dialog>
             </React.Fragment>

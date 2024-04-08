@@ -8,12 +8,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 //components folder import
 import DurationMenu from "./DurationMenu";
 import DateAndTimePicker from "./DateAndTimePicker";
+import CustomersMenu from "./CustomersMenu";
 
 export default function EditTraining(props) {
-    const { training, setEditing, fetchTrainings, setTrainings } = props;
+    const { training, setEditing, fetchTrainings, setTrainings, fetchCustomers } = props;
     const [editedTraining, setEditedTraining] = useState(training);
     const [open, setOpen] = useState(true);
-
+    const [selectedCustomer, setSelectedCustomer] = useState(training._links.customer.href)
+   
     const handleInputChange = (e) => {
         setEditedTraining({ ...editedTraining, [e.target.name]: e.target.value });
     };
@@ -27,8 +29,13 @@ export default function EditTraining(props) {
         setEditing(false);
     };
 
+    const handleCustomerChange = (value) => {
+        console.log('handleCustomerChange:',editedTraining)
+        setSelectedCustomer(value);
+    };
+
     const requiredEditedTrainingFieldsCheck = () => {
-        console.log(editedTraining)
+        console.log('field check:',editedTraining)
         if (
             editedTraining.activity.trim() !== '' &&
             typeof editedTraining.duration === 'number' && editedTraining.duration > 0 &&
@@ -42,6 +49,7 @@ export default function EditTraining(props) {
     }
 
     const saveEdit = () => {
+        console.log('saveEdit:',editedTraining)
         if(requiredEditedTrainingFieldsCheck()){
         fetch(editedTraining._links.self.href, {
             method: 'PUT',

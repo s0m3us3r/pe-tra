@@ -26,7 +26,9 @@ export default function EditCustomerCellRender(props) {
                     customer={customer}
                     setEditing={setEditing}
                     fetchCustomers={fetchCustomers}
-                    setCustomers={setCustomers} />)}
+                    setCustomers={setCustomers} 
+                    />
+                    )}
         </>
     );
 };

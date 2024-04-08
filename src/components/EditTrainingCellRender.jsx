@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 export default function EditTrainingCellRender(props) {
     const cellValue = props.valueFormatted ? props.valueFormatted : props.value;
-    const { training, fetchTrainings, fetchCustomers, setTrainings } = props;
+    const { training, fetchTrainings, fetchCustomers, setTrainings} = props;
     const [editing, setEditing] = useState(false);
 
 
